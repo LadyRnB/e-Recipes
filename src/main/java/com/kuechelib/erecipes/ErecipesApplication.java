@@ -1,4 +1,4 @@
-package com.kuchelib.erecipes;
+package com.kuechelib.erecipes;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
