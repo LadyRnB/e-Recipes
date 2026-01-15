@@ -1,2 +1,2 @@
 # e-Recipes
-An online recipes library
+An online recipes carnet
