@@ -1,17 +1,21 @@
 package com.kuechelib.erecipes.ingredients.service;
 
+import com.kuechelib.erecipes.ingredients.repository.IngredientEntity;
+import com.kuechelib.erecipes.ingredients.repository.IngredientRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Random;
 
 @Service
 public class IngredientService {
+    private final IngredientEntityMapper mapper = new IngredientEntityMapper();
 
-    public IngredientDTO createIngredient(IngredientDTO newIngredientDTO) {
-    System.out.println("The ingredient that will be created is: " + newIngredientDTO);
-    Long id = new Random().nextLong();
-    IngredientDTO createdIngredientDTO = new IngredientDTO(id, newIngredientDTO.name(), newIngredientDTO.attribute(), newIngredientDTO.unit());
-    System.out.println("The ingredient is finally created");
-    return createdIngredientDTO;
-}
+    @Autowired
+    private IngredientRepository ingredientRepository;
+
+    public IngredientDTO createIngredient(IngredientDTO newIngredientDTO){
+        IngredientEntity ingredientEntity = ingredientRepository.save(mapper.map(newIngredientDTO));
+        return mapper.map(ingredientEntity);
+    }
+
+
 }

@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/ingredients")
 public class IngredientController {
 
+    private final IngredientDtoMapper mapper = new IngredientDtoMapper();
+
     @Autowired
     private IngredientService ingredientService;
 
     @PostMapping
-    public IngredientResponse createIngredient(@RequestBody CreationIngredientRequest ingredientRequest) {
-        System.out.println("The new ingredient is: " + ingredientRequest);
-        IngredientDTO respondedIngredientDTO = ingredientService.createIngredient(new IngredientDTO(null, ingredientRequest.name(), ingredientRequest.attribute(), ingredientRequest.unit()));
-        return new IngredientResponse(respondedIngredientDTO.id(), respondedIngredientDTO.name(), respondedIngredientDTO.attribute(), respondedIngredientDTO.unit());
-
+    public IngredientResponse createIngredient(CreationIngredientRequest newIngredientRequest){
+        IngredientDTO ingredientDTO = ingredientService.createIngredient(mapper.map(newIngredientRequest));
+        return mapper.map(ingredientDTO);
     }
 }
