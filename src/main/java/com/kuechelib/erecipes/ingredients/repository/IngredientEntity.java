@@ -19,6 +19,7 @@ public class IngredientEntity {
     private Long id;
     private String name;
     private String attribute;
+    @Enumerated(EnumType.STRING)
     private MeasurementUnit unit;
 
 
