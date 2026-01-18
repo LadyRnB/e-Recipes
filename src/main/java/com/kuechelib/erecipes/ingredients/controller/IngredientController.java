@@ -18,7 +18,7 @@ public class IngredientController {
     private IngredientService ingredientService;
 
     @PostMapping
-    public IngredientResponse createIngredient(CreationIngredientRequest newIngredientRequest){
+    public IngredientResponse createIngredient(@RequestBody CreationIngredientRequest newIngredientRequest){
         IngredientDTO ingredientDTO = ingredientService.createIngredient(mapper.map(newIngredientRequest));
         return mapper.map(ingredientDTO);
     }
