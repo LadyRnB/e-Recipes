@@ -1,5 +1,13 @@
 package com.kuechelib.erecipes.ingredients.controller;
 
 public enum MeasurementUnit {
-    ML
+    PIECE,
+    MILLILITER,
+    LITER,
+    GRAM,
+    KILOGRAM,
+    TEASPOON,
+    TABLESPOON,
+    CUP,
+    PINCH
 }
