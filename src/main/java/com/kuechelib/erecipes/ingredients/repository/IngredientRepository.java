@@ -7,5 +7,5 @@ import java.util.UUID;
 
 @Repository
 
-public interface IngredientRepository extends JpaRepository<IngredientEntity, UUID> {
+public interface IngredientRepository extends JpaRepository<IngredientEntity, Long> {
 }
