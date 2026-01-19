@@ -3,10 +3,10 @@ package com.kuechelib.erecipes.ingredients.controller;
 import com.kuechelib.erecipes.ingredients.service.IngredientDTO;
 import com.kuechelib.erecipes.ingredients.service.IngredientService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
+
 
 @RestController
 @RequestMapping("/ingredients")
@@ -22,4 +22,12 @@ public class IngredientController {
         IngredientDTO ingredientDTO = ingredientService.createIngredient(mapper.map(newIngredientRequest));
         return mapper.map(ingredientDTO);
     }
+    @GetMapping("{ingredientId}")
+    public IngredientResponse getIngredientById(@PathVariable Long ingredientId){
+        return ingredientService.findIngredientById(ingredientId)
+                .map(ingredientDTO -> mapper.map(ingredientDTO))
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Ingredient not found"));
+
+    }
+
 }
